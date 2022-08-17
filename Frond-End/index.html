@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue.js Search Highlight</title>
+
+    <!--mainPage stylesheet-->
+    <link rel="stylesheet" href="./css/mainPage.css"/>
+    <link rel="stylesheet" href="./css/foundation.min.css">
+
+    <!-- Vue.js framework -->
+    <script src="./js/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- component template -->
+    <script type="text/x-template" id="grid-template">
+      <div class="container" id="app">
+        <div class="columns medium-6" v-for="
+        project in data">
+            <div class="card-head"></div>
+            <div class="card">
+              <div class="card-section">
+                <p> {{{project.name | highlight filterKey}}}</p>
+              </div>
+              <div class="card-section">
+                <div class="columns small-12">
+                  <div class="columns small-6">
+                    <img v-bind:src="project.image.link" width="60px" height="60px" alt="">
+                  </div>
+                  <div class="columns small-6">
+                    <div class="columns small-12" v-for="key in project.groups | filterBy filterKey">
+                        <p>{{{key.name | highlight filterKey}}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </script>
+</head>
+<body @keyup.enter="submit()">
+
+    <!-- demo root element -->
+    <div id="demo">
+      <div class="container">
+        <div class="columns medium-12">
+          <form id="search">
+            Search <input name="query" v-model="searchQuery">
+          </form>
+        </div>
+      </div>
+      <demo-grid
+        :data="gridData"
+        :columns="gridColumns"
+        :filter-key="searchQuery">
+      </demo-grid>
+    </div>
+
+    <!-- main.js -->
+    <script src="./js/mainPage.js"></script>
+</body>
+
+
+</html>
