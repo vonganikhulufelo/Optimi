@@ -3,7 +3,7 @@
     b. Install Expressjs (http://expressjs.com/) 
 
 2. Prepare project
-    a. Download project from github ()
+    a. Download project from github (https://github.com/vonganikhulufelo/Optimi.git)
     b. Nativgate to Back-End directory on terminal and run the following:
      - npm install
      - node app.js-
